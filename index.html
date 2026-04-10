@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevQuest - Interactive Learning Platform</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+    <div class="app-container">
+        
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="logo">
+                <i class="fa-solid fa-code"></i> Dev<span>Quest</span>
+            </div>
+            
+            <nav class="nav-menu">
+                <a href="#" class="nav-item active"><i class="fa-solid fa-map-location-dot"></i> Path</a>
+                <a href="#" class="nav-item"><i class="fa-solid fa-trophy"></i> Leaderboard</a>
+                <a href="#" class="nav-item"><i class="fa-solid fa-users"></i> Team Quests</a>
+                <a href="#" class="nav-item"><i class="fa-solid fa-medal"></i> Badges</a>
+            </nav>
+
+            <div class="user-profile">
+                <img src="https://api.dicebear.com/7.x/bottts/svg?seed=CoderHero" alt="Avatar" class="avatar">
+                <div class="user-info">
+                    <span class="user-name">Alex.dev</span>
+                    <span class="user-title">Novice Architect</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            
+            <!-- Topbar (Streaks, XP) -->
+            <header class="topbar">
+                <div class="search-bar">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" placeholder="Search topics...">
+                </div>
+                
+                <div class="stats-container">
+                    <div class="stat-badge" title="Current Level">
+                        <i class="fa-solid fa-star" style="color: #f1c40f;"></i> Lvl <span id="user-level">4</span>
+                    </div>
+                    <div class="stat-badge xp-badge">
+                        <i class="fa-solid fa-bolt" style="color: #00d2ff;"></i> <span id="user-xp">1,250 XP</span>
+                    </div>
+                    <div class="stat-badge streak-badge" id="streak-tracker" title="Keep learning daily!">
+                        <i class="fa-solid fa-fire" style="color: #ff4757;"></i> <span id="streak-count">3</span> Day Streak
+                    </div>
+                </div>
+            </header>
+
+            <!-- Welcome Banner -->
+            <section class="welcome-banner glass-panel">
+                <div class="banner-content">
+                    <h1>Ready to code, <span class="highlight">Alex</span>?</h1>
+                    <p>You are 50 XP away from unlocking the <strong>Recursion</strong> module. Complete today's daily quest to level up!</p>
+                    <button class="btn primary-btn pulse-glow" onclick="openChallenge()">Start Quest <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+                <div class="banner-graphic">
+                    <div class="orbit">
+                        <i class="fa-brands fa-html5 orbit-icon html"></i>
+                        <i class="fa-brands fa-css3-alt orbit-icon css"></i>
+                        <i class="fa-brands fa-js orbit-icon js"></i>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Learning Path / Skill Tree -->
+            <section class="learning-path">
+                <h2>Skill Path</h2>
+                <div class="path-container">
+                    
+                    <div class="path-node completed">
+                        <div class="node-icon"><i class="fa-solid fa-check"></i></div>
+                        <div class="node-info">
+                            <h3>Variables & Data</h3>
+                            <span>Mastered</span>
+                        </div>
+                    </div>
+                    
+                    <div class="path-connector active"></div>
+
+                    <div class="path-node completed">
+                        <div class="node-icon"><i class="fa-solid fa-code-branch"></i></div>
+                        <div class="node-info">
+                            <h3>Control Flow</h3>
+                            <span>Mastered</span>
+                        </div>
+                    </div>
+
+                    <div class="path-connector active"></div>
+                    
+                    <!-- Current Active Node -->
+                    <div class="path-node active pulse">
+                        <div class="node-icon"><i class="fa-solid fa-play"></i></div>
+                        <div class="node-info">
+                            <h3>Functions</h3>
+                            <span>In Progress (75%)</span>
+                        </div>
+                        <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 75%;"></div></div>
+                    </div>
+
+                    <div class="path-connector locked"></div>
+
+                    <!-- Locked Node -->
+                    <div class="path-node locked">
+                        <div class="node-icon"><i class="fa-solid fa-lock"></i></div>
+                        <div class="node-info">
+                            <h3>Recursion</h3>
+                            <span>Locked</span>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Scenario Cards -->
+            <section class="scenarios">
+                <h2>Scenario Missions</h2>
+                <div class="cards-grid">
+                    <div class="scenario-card alert-card">
+                        <div class="card-header">
+                            <i class="fa-solid fa-triangle-exclamation"></i>
+                            <span>Urgent</span>
+                        </div>
+                        <h3>Spaceship Navigation Bug</h3>
+                        <p>The main thruster loop is stuck in an infinite state. Fix the loop to prevent deep space drift!</p>
+                        <div class="card-footer">
+                            <span class="reward">+200 XP</span>
+                            <button class="btn secondary-btn" onclick="openChallenge()">Intercept</button>
+                        </div>
+                    </div>
+                    
+                    <div class="scenario-card team-card disabled">
+                        <div class="card-header">
+                            <i class="fa-solid fa-users"></i>
+                            <span>Co-op Mode</span>
+                        </div>
+                        <h3>Network Security Breach</h3>
+                        <p>Team up with 2 other players to rebuild the firewall algorithms before time runs out.</p>
+                        <div class="card-footer">
+                            <span class="reward">Rare Badge</span>
+                            <button class="btn outline-btn" disabled>Needs Level 5</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Mini-Game Coding Challenge Modal -->
+    <div id="challenge-modal" class="modal-overlay hidden">
+        <div class="modal-content glass-panel">
+            <div class="modal-header">
+                <h2><i class="fa-solid fa-terminal"></i> Mission Control Console</h2>
+                <button class="close-btn" onclick="closeChallenge()"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            
+            <div class="modal-body">
+                <div class="challenge-description">
+                    <h3>Fix the Thruster Loop</h3>
+                    <p>The code below is supposed to countdown from 5 and then ignite thrusters. However, the condition in the <code>while</code> loop is incorrect, causing an infinite loop. Fix it!</p>
+                </div>
+                
+                <div class="code-editor">
+                    <div class="editor-header">
+                        <span class="dot red"></span>
+                        <span class="dot yellow"></span>
+                        <span class="dot green"></span>
+                        <span class="filename">thruster.js</span>
+                    </div>
+                    <textarea id="code-input" spellcheck="false">
+let countdown = 5;
+
+// BUG: This loop runs infinitely
+while (countdown > 0) {
+    console.log("T-Minus " + countdown);
+    // Fix the line below
+    countdown = countdown; 
+}
+
+console.log("IGNITION!");
+</textarea>
+                </div>
+                <div id="console-output" class="console">
+                    > System standing by...
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn execute-btn" onclick="runCode()"><i class="fa-solid fa-play"></i> Run Diagnostics</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification System -->
+    <div id="toast-container"></div>
+
+    <script src="./script.js"></script>
+</body>
+</html>
