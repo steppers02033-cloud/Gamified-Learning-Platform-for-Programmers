@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: gamified-learning-platform
+    env: node
+    buildCommand: "cd server && npm install && npm run build"
+    startCommand: "cd server && npm start"
+    envVars:
+      - key: PORT
+        value: 5000
+      - key: NODE_ENV
+        value: production
+      - key: MONGODB_URI
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
